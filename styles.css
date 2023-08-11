@@ -1,0 +1,74 @@
+/* Global Styles */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	font-family: sans-serif;
+}
+
+/* Header Styles */
+.title {
+	text-align: center;
+	padding: 1rem;
+	font-weight: 400;
+	font-size: 2.5rem;
+	background-color: #322e2a;
+	color: white;
+	/* border-bottom: solid 2px black; */
+}
+
+/* Content styles */
+
+/* Table style */
+table,
+th,
+td {
+	border: 2px solid black;
+	padding: 0.3rem;
+}
+
+table {
+	border-collapse: collapse;
+	width: 90vw;
+	margin: 1rem;
+}
+
+.column-header {
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.3rem;
+	background-color: white;
+}
+
+.total-header {
+	font-weight: bold;
+}
+
+.basics {
+	background-color: #cdb7db;
+}
+
+.selections {
+	background-color: #d5efd6;
+}
+
+.extras {
+	background-color: #c0fafc;
+}
+
+/* Game board styles */
+
+.game-board-image {
+	width: 100vw;
+	height: auto;
+    border: #322e2a solid 10px;
+}
