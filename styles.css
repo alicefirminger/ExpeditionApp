@@ -13,26 +13,40 @@ body {
 	align-items: center;
 	font-size: 18px;
 	font-family: sans-serif;
+	background-image: url(gameboard2.jpg);
+	background-size: contain;
 }
 
 /* Header Styles */
 .title {
 	text-align: center;
-	padding: 1rem;
+	padding: 3rem 1rem 3rem 1rem;
 	font-weight: 400;
 	font-size: 2.5rem;
-	background-color: #322e2a;
+	background-color: black;
 	color: white;
-	/* border-bottom: solid 2px black; */
+	margin: 1rem;
+	border-radius: 2rem;
 }
 
 /* Content styles */
+
+.move-speed {
+	text-align: center;
+	padding: 3rem 1rem 3rem 1rem;
+	font-weight: 400;
+	font-size: 1.5rem;
+	background-color: black;
+	color: white;
+    margin: 1rem;
+	border-radius: 2rem;
+}
 
 /* Table style */
 table,
 th,
 td {
-	border: 2px solid black;
+	border: 4px solid black;
 	padding: 0.3rem;
 }
 
@@ -65,10 +79,7 @@ table {
 	background-color: #c0fafc;
 }
 
-/* Game board styles */
-
-.game-board-image {
-	width: 100vw;
-	height: auto;
-    border: #322e2a solid 10px;
+.or {
+	font-weight: bold;
+	text-align: center;
 }
