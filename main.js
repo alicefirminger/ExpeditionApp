@@ -10,29 +10,8 @@ function createFormula() {
 
 	const selectionsTotal =
 		document.getElementById("selections-total").textContent;
-	const lightTentValue = parseFloat(
-		document.getElementById("light-tent-value").textContent
-	);
-	const mountainTentValue = parseFloat(
-		document.getElementById("mountain-tent-value").textContent
-	);
-	const summerSleepingbagValue = parseFloat(
-		document.getElementById("summer-sleepingbag-value").textContent
-	);
-	const winterSleepingbagValue = parseFloat(
-		document.getElementById("winter-sleepingbag-value").textContent
-	);
 
 	const extrasTotal = document.getElementById("extras-total").textContent;
-	const waterValue = parseFloat(
-		document.getElementById("water-value").textContent
-	);
-	const extraFoodValue = parseFloat(
-		document.getElementById("extra-food-value").textContent
-	);
-	const accessoriesValue = parseFloat(
-		document.getElementById("accessories-value").textContent
-	);
 
 	let overallTotal = parseFloat(
 		document.getElementById("overall-total").textContent
@@ -53,3 +32,9 @@ function createFormula() {
 	console.log(moveSpeed);
 }
 createFormula();
+
+function selectValue(elementId) {
+	const value = parseFloat(document.getElementById(elementId).textContent);
+	console.log(value);
+}
+
