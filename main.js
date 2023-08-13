@@ -1,33 +1,29 @@
 console.log("hello, world");
 
 // PLAN
-// Write a function that onclick adds the total columns selected and inputs them in a 'totals' column.
+// Write a function that onclick adds the total columns selected and inputs them in a 'totals' column. (edit I have changed this to using variables with hard coded values since the values never change)
 // It should add up each 'section total' and then an overall weight total
 // Then it should have this formula 12 - overall weight total
 
 function createFormula() {
 	const basicsTotal = 5;
-	const lightweightTent = 1;
-	const mountainTent = 1.5;
-	const summerSleepingBag = 1;
-	const winterSleepingBag = 1.5;
-	const water = 0.5;
-	const extraFood = 0.5;
-	const accessories = 0.5;
 
 	// Created an array of items with their properties
-	const items = [
+	const selectionItems = [
 		{ id: "light-tent-value", value: 1, added: false },
 		{ id: "mountain-tent-value", value: 1.5, added: false },
 		{ id: "summer-sleepingbag-value", value: 1, added: false },
 		{ id: "winter-sleepingbag-value", value: 1.5, added: false },
+	];
+
+	const extrasItems = [
 		{ id: "water-value", value: 0.5, added: false },
 		{ id: "extra-food-value", value: 0.5, added: false },
 		{ id: "accessories-value", value: 0.5, added: false },
 	];
 
 	// Add event listeners to each item
-	items.forEach((item) => {
+	selectionItems.forEach((item) => {
 		const element = document.getElementById(item.id);
 		element.addEventListener("click", () => {
 			if (!item.added) {
@@ -38,22 +34,47 @@ function createFormula() {
 		});
 	});
 
+	// Add event listeners to each item
+	extrasItems.forEach((item) => {
+		const element = document.getElementById(item.id);
+		element.addEventListener("click", () => {
+			if (!item.added) {
+				item.added = true;
+				updateExtrasTotal();
+				updateOverallTotal();
+			}
+		});
+	});
+
 	function updateSelectionTotal() {
 		const selectionTotalElement =
 			document.getElementById("selections-total").lastElementChild;
-		const selectedItemsTotal = items.reduce(
+		const selectedItemsTotal = selectionItems.reduce(
 			(total, item) => total + (item.added ? item.value : 0),
 			0
 		);
 		selectionTotalElement.textContent = selectedItemsTotal.toString();
 	}
 
-	function updateOverallTotal() {
-		const selectionsTotal = items.reduce(
+	function updateExtrasTotal() {
+		const extrasTotalElement =
+			document.getElementById("extras-total").lastElementChild;
+		const extrasItemsTotal = extrasItems.reduce(
 			(total, item) => total + (item.added ? item.value : 0),
 			0
 		);
-		const extrasTotal = water + extraFood + accessories;
+		extrasTotalElement.textContent = extrasItemsTotal.toString();
+	}
+
+	function updateOverallTotal() {
+		const selectionsTotal = selectionItems.reduce(
+			(total, item) => total + (item.added ? item.value : 0),
+			0
+		);
+		const extrasTotal = extrasItems.reduce(
+			(total, item) => total + (item.added ? item.value : 0),
+			0
+		);
 		const overallTotal = basicsTotal + selectionsTotal + extrasTotal;
 
 		const moveSpeed = 12 - overallTotal;
