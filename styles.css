@@ -59,25 +59,42 @@ h1 {
 }
 
 /* Table style */
-table,
-th,
-td {
-	border: 2px solid black;
-	padding: 0.3rem;
+.headings {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: 0;
+	background-color: white;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-bottom: 2px solid black;
 }
 
-table {
+.equipment,
+.weight {
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.4rem;
+	background-color: white;
+}
+
+.table {
 	border-collapse: collapse;
-	border-radius: 1rem;
 	width: 90vw;
 	margin: 0.3rem;
 	box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+	border: 2px solid black;
 }
 
 .column-header {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	background-color: white;
+	border-bottom: 2px solid black;
 	font-weight: bold;
 	text-align: center;
 	font-size: 1.3rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
 	background-color: white;
 }
 
@@ -86,10 +103,22 @@ table {
 }
 
 .basics {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: 0;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-bottom: 2px solid black;
 	background-color: #cdb7db;
 }
 
 .selections {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: 0;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-bottom: 2px solid black;
 	background-color: #d5efd6;
 }
 .select:hover {
@@ -100,10 +129,33 @@ table {
 }
 
 .extras {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: 0;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-bottom: 2px solid black;
 	background-color: #c0fafc;
 }
 
 .or {
 	font-weight: bold;
 	text-align: center;
+}
+
+.total {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: 0;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	background-color: white;
+}
+
+.weight-total,
+.overall-total {
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.3rem;
+	background-color: white;
 }
