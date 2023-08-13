@@ -1,5 +1,3 @@
-console.log("hello, world");
-
 // PLAN
 // Write a function that onclick adds the total columns selected and inputs them in a 'totals' column. (edit I have changed this to using variables with hard coded values since the values never change)
 // It should add up each 'section total' and then an overall weight total
@@ -28,8 +26,68 @@ function createFormula() {
 		element.addEventListener("click", () => {
 			if (!item.added) {
 				item.added = true;
+				element.style.backgroundColor = "#e6e0e0";
 				updateSelectionTotal();
 				updateOverallTotal();
+
+				// Toggle the added status and update styles for the other item
+				const otherItemId =
+					item.id === "light-tent-value"
+						? "mountain-tent-value"
+						: "light-tent-value";
+				const otherItemElement = document.getElementById(otherItemId);
+				if (otherItemElement) {
+					selectionItems.find(
+						(otherItem) => otherItem.id === otherItemId
+					).added = false;
+					otherItemElement.style.backgroundColor = "#cdb7db";
+				}
+				const otherItemId2 =
+					item.id === "summer-sleepingbag-value"
+						? "winter-sleepingbag-value"
+						: "summer-sleepingbag-value";
+				const otherItemElement2 = document.getElementById(otherItemId2);
+				if (otherItemElement2) {
+					selectionItems.find(
+						(otherItem) => otherItem.id === otherItemId2
+					).added = false;
+					otherItemElement2.style.backgroundColor = "#cdb7db";
+				}
+
+				// Update the totals based on the toggled item
+				if (
+					item.id === "light-tent-value" ||
+					item.id === "summer-sleepingbag-value"
+				) {
+					// Add value of light-tent to totals
+					updateSelectionTotal(1);
+					updateOverallTotal(1);
+				} else if (
+					item.id === "mountain-tent-value" ||
+					item.id === "winter-sleepingbag-value"
+				) {
+					// Add value of mountain-tent to totals
+					updateSelectionTotal(1.5);
+					updateOverallTotal(1.5);
+				}
+			} else {
+				item.added = false;
+				element.style.backgroundColor = "";
+				element.style.textDecoration = "";
+				// Subtract the value of the clicked item from the totals
+				if (
+					item.id === "light-tent-value" ||
+					item.id === "summer-sleepingbag-value"
+				) {
+					updateSelectionTotal(-1);
+					updateOverallTotal(-1);
+				} else if (
+					item.id === "mountain-tent-value" ||
+					item.id === "winter-sleepingbag-value"
+				) {
+					updateSelectionTotal(-1.5);
+					updateOverallTotal(-1.5);
+				}
 			}
 		});
 	});
@@ -40,6 +98,7 @@ function createFormula() {
 		element.addEventListener("click", () => {
 			if (!item.added) {
 				item.added = true;
+				element.style.backgroundColor = "#e6e0e0";
 				updateExtrasTotal();
 				updateOverallTotal();
 			}
@@ -83,13 +142,8 @@ function createFormula() {
 		moveSpeedTotal.textContent = moveSpeedText;
 
 		const overallTotalElement = document.getElementById("overall-total");
-		overallTotalElement.textContent = overallTotal.toFixed(2);
+		overallTotalElement.textContent = overallTotal;
 	}
 }
 
 createFormula();
-
-function selectValue(elementId) {
-	const value = parseFloat(document.getElementById(elementId).textContent);
-	console.log(value);
-}

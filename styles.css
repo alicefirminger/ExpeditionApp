@@ -18,11 +18,9 @@ body {
 }
 
 /* Header Styles */
-.title {
+.header {
 	text-align: center;
 	padding: 1rem;
-	font-weight: 500;
-	font-size: 1rem;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 	margin: 1rem 1rem 0 1rem;
@@ -36,6 +34,12 @@ body {
 	width: 250px;
 	height: auto;
 	margin: 0.5rem;
+}
+
+.title-text {
+	font-weight: bolder;
+	font-size: 2.5rem;
+	padding: 0;
 }
 
 /* Content styles */
@@ -57,7 +61,7 @@ body {
 .move-speed-total {
 	color: green;
 	font-weight: 400;
-	font-size: 1.2rem;
+	font-size: 2rem;
 }
 
 h1 {
@@ -115,7 +119,7 @@ h1 {
 	margin-left: 0;
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	border-bottom: 2px solid black;
-	background-color: #cdb7db;
+	background-color: #e6e0e0;
 }
 
 .selections {
@@ -125,7 +129,8 @@ h1 {
 	margin-left: 0;
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	border-bottom: 2px solid black;
-	background-color: #d5efd6;
+	background-color: #cdb7db;
+	
 }
 .select:hover {
 	background-color: black;
