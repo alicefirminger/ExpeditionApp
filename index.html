@@ -8,8 +8,8 @@
 	</head>
 	<body>
 		<header class="title">
-			<img src="expeditionLogo.jpg" class="logo-image">
-			<h1 >Route Card Calculator</h1>
+			<img src="expeditionLogo.jpg" class="logo-image" />
+			<h1>Route Card Calculator</h1>
 		</header>
 		<div class="table">
 			<div class="headings">
@@ -19,95 +19,81 @@
 			<div class="basics-heading">
 				<div class="column-header">Basic</div>
 			</div>
-			<div class="basics">
+			<div class="basics" id="rucksack-value">
 				<div>Rucksack</div>
-				<div id="rucksack-value">1</div>
-			</div>
-			<div class="basics">
-				<div>Stove and fuel</div>
-				<div id="stove-value">1</div>
-			</div>
-			<div class="basics">
-				<div>Food</div>
-				<div id="food-value">1</div>
-			</div>
-			<div class="basics">
-				<div>Waterproofs</div>
-				<div id="waterproofs-value">1</div>
-			</div>
-			<div class="basics">
-				<div id="maps-value">Maps/compass/First Aid</div>
 				<div>1</div>
 			</div>
-			<div class="basics">
+			<div class="basics" id="stove-value">
+				<div>Stove and fuel</div>
+				<div>1</div>
+			</div>
+			<div class="basics" id="food-value">
+				<div>Food</div>
+				<div>1</div>
+			</div>
+			<div class="basics" id="waterproofs-value">
+				<div>Waterproofs</div>
+				<div>1</div>
+			</div>
+			<div class="basics" id="maps-value">
+				<div>Maps/compass/First Aid</div>
+				<div>1</div>
+			</div>
+			<div class="basics" id="basics-total">
 				<div class="total-header">Basics total</div>
-				<div id="basics-total">5</div>
+				<div>5</div>
 			</div>
 			<div class="selections-header">
 				<div class="column-header">Selection</div>
 			</div>
-			<div class="selections">
-				<div class="select" onclick="selectValue('light-tent-value')">
-					Lightweight tent
-				</div>
-				<div id="light-tent-value">1</div>
+			<div class="selections" id="light-tent-value">
+				<div class="select">Lightweight tent</div>
+				<div>1</div>
 			</div>
 			<div class="selections">
 				<div class="or">or</div>
 			</div>
-			<div class="selections">
-				<div class="select" onclick="selectValue('mountain-tent-value')">
-					Mountain tent
-				</div>
-				<div id="mountain-tent-value">1.5</div>
+			<div class="selections" id="mountain-tent-value">
+				<div class="select">Mountain tent</div>
+				<div>1.5</div>
 			</div>
-			<div class="selections">
-				<div class="select" onclick="selectValue('summer-sleepingbag-value')">
-					1-2 season sleeping bag
-				</div>
-				<div id="summer-sleepingbag-value">1</div>
+			<div class="selections" id="summer-sleepingbag-value">
+				<div class="select">1-2 season sleeping bag</div>
+				<div>1</div>
 			</div>
 			<div class="selections">
 				<div class="or">or</div>
 			</div>
-			<div class="selections">
-				<div class="select" onclick="selectValue('winter-sleepingbag-value')">
-					3-4 season sleeping bag
-				</div>
-				<div id="winter-sleepingbag-value">1.5</div>
+			<div class="selections" id="winter-sleepingbag-value">
+				<div class="select">3-4 season sleeping bag</div>
+				<div>1.5</div>
 			</div>
-			<div class="selections">
+			<div class="selections" id="selections-total">
 				<div class="total-header">Selection total</div>
-				<div id="selections-total"></div>
+				<div></div>
 			</div>
 			<div class="extras-header">
 				<div class="column-header">Extras</div>
 			</div>
-			<div class="extras">
-				<div class="select" onclick="selectValue('water-value')">
-					Water and bottles
-				</div>
-				<div id="water-value">0.5</div>
+			<div class="extras" id="water-value">
+				<div class="select">Water and bottles</div>
+				<div>0.5</div>
 			</div>
-			<div class="extras">
-				<div class="select" onclick="selectValue('extra-food-value')">
-					Extra food
-				</div>
-				<div id="extra-food-value">0.5</div>
+			<div class="extras" id="extra-food-value">
+				<div class="select">Extra food</div>
+				<div>0.5</div>
 			</div>
-			<div class="extras">
-				<div class="select" onclick="selectValue('accessories-value')">
-					Hat, gloves, socks
-				</div>
-				<div id="accessories-value">0.5</div>
+			<div class="extras" id="accessories-value">
+				<div class="select">Hat, gloves, socks</div>
+				<div>0.5</div>
 			</div>
-			<div class="extras">
+			<div class="extras" id="extras-total">
 				<div class="total-header">Extras total</div>
-				<div id="extras-total"></div>
+				<div></div>
 			</div>
-			<div class="total">
+			<div class="total" >
 				<div class="weight-total">Weight total</div>
-				<div class="overall-total" id="overall-total"></div>
+				<div class="overall-total"id="overall-total"></div>
 			</div>
 		</div>
 		<div class="move-speed">
