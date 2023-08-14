@@ -20,7 +20,7 @@ function createFormula() {
 		{ id: "accessories-value", value: 0.5, added: false },
 	];
 
-	// Add event listeners to each item
+	// Event listeners for the Selection section
 	selectionItems.forEach((item) => {
 		const element = document.getElementById(item.id);
 		element.addEventListener("click", () => {
@@ -53,46 +53,41 @@ function createFormula() {
 					).added = false;
 					otherItemElement2.style.backgroundColor = "#cdb7db";
 				}
-
-				// Update the totals based on the toggled item
 				if (
 					item.id === "light-tent-value" ||
 					item.id === "summer-sleepingbag-value"
 				) {
-					// Add value of light-tent to totals
-					updateSelectionTotal(1);
-					updateOverallTotal(1);
+					updateSelectionTotal();
+					updateOverallTotal();
 				} else if (
 					item.id === "mountain-tent-value" ||
 					item.id === "winter-sleepingbag-value"
 				) {
-					// Add value of mountain-tent to totals
-					updateSelectionTotal(1.5);
-					updateOverallTotal(1.5);
+					updateSelectionTotal();
+					updateOverallTotal();
 				}
 			} else {
 				item.added = false;
 				element.style.backgroundColor = "";
 				element.style.textDecoration = "";
-				// Subtract the value of the clicked item from the totals
 				if (
 					item.id === "light-tent-value" ||
 					item.id === "summer-sleepingbag-value"
 				) {
-					updateSelectionTotal(-1);
-					updateOverallTotal(-1);
+					updateSelectionTotal();
+					updateOverallTotal();
 				} else if (
 					item.id === "mountain-tent-value" ||
 					item.id === "winter-sleepingbag-value"
 				) {
-					updateSelectionTotal(-1.5);
-					updateOverallTotal(-1.5);
+					updateSelectionTotal();
+					updateOverallTotal();
 				}
 			}
 		});
 	});
 
-	// Add event listeners to each item
+	// Event listeners for the Extras section
 	extrasItems.forEach((item) => {
 		const element = document.getElementById(item.id);
 		element.addEventListener("click", () => {
@@ -101,10 +96,16 @@ function createFormula() {
 				element.style.backgroundColor = "#e6e0e0";
 				updateExtrasTotal();
 				updateOverallTotal();
+			} else if (item.added) {
+				item.added = false;
+				element.style.backgroundColor = "";
+				updateExtrasTotal();
+				updateOverallTotal();
 			}
 		});
 	});
 
+	// Function to update the Selection section total
 	function updateSelectionTotal() {
 		const selectionTotalElement =
 			document.getElementById("selections-total").lastElementChild;
@@ -115,6 +116,7 @@ function createFormula() {
 		selectionTotalElement.textContent = selectedItemsTotal.toString();
 	}
 
+	// Function to update the Extras section total
 	function updateExtrasTotal() {
 		const extrasTotalElement =
 			document.getElementById("extras-total").lastElementChild;
@@ -125,6 +127,7 @@ function createFormula() {
 		extrasTotalElement.textContent = extrasItemsTotal.toString();
 	}
 
+	// Function to update the overall total & calculate the move speed
 	function updateOverallTotal() {
 		const selectionsTotal = selectionItems.reduce(
 			(total, item) => total + (item.added ? item.value : 0),
