@@ -3,10 +3,9 @@
 // It should add up each 'section total' and then an overall weight total
 // Then it should have this formula 12 - overall weight total
 
-createFormula();
-
 function createFormula() {
 	const basicsTotal = 5;
+
 	// Created an array of items with their properties
 	const selectionItems = [
 		{ id: "light-tent-value", value: 1, added: false },
@@ -21,50 +20,98 @@ function createFormula() {
 		{ id: "accessories-value", value: 0.5, added: false },
 	];
 
-	// Event listeners for the Selection section
 	selectionItems.forEach((item) => {
+		// Loop through each selection item
 		const element = document.getElementById(item.id);
+		// Get the HTML element corresponding to the current item's ID
 		element.addEventListener("click", () => {
+			// Add a click event listener to the element
+
+			console.log(`Clicked on ${item.id}`);
+			// Log the ID of the clicked item to the console
+
+			const otherItemId = getOtherItemInGroup(item.id);
+			// Get the ID of the other item in the same "or" group
+
 			if (!item.added) {
+				// If the current item is not already added
+
+				console.log(`Adding ${item.id}`);
+				// Log that the current item is being added
+
 				item.added = true;
+				// Set the added property of the current item to true
 				element.style.backgroundColor = "#e6e0e0";
-				updateSelectionTotal();
-				updateOverallTotal();
+				// Change the background color of the element to indicate selection
 
-				const otherItemId = getOtherItemId(item.id);
-				const otherItemElement = document.getElementById(otherItemId);
-				if (otherItemElement) {
-					selectionItems.find(
-						(otherItem) => otherItem.id === otherItemId
-					).added = false;
-					otherItemElement.style.backgroundColor = "#cdb7db";
-				}
-
-				// Check for tent-sleepingbag combination
-				if (
-					item.id === "light-tent-value" ||
-					item.id === "mountain-tent-value"
-				) {
-					const sleepingBagId =
-						item.id === "light-tent-value"
-							? "winter-sleepingbag-value"
-							: "summer-sleepingbag-value";
-					const sleepingBagElement = document.getElementById(sleepingBagId);
-					if (sleepingBagElement) {
-						sleepingBagElement.style.backgroundColor = "";
-						selectionItems.find(
-							(sleepingBagItem) => sleepingBagItem.id === sleepingBagId
-						).added = false;
-					}
-				}
+				deselectOtherItemInGroup(otherItemId);
+				// Deselect the other item in the same group
 			} else {
+				// If the current item is already added
+
+				console.log(`Removing ${item.id}`);
+				// Log that the current item is being removed
+
 				item.added = false;
+				// Set the added property of the current item to false
 				element.style.backgroundColor = "";
-				updateSelectionTotal();
-				updateOverallTotal();
+				// Remove the background color to indicate deselection
+				element.style.textDecoration = "";
+				// Remove any text decoration (if added before)
 			}
+
+			updateSelectionTotal();
+			// Update the selection total displayed on the page
+			updateOverallTotal();
+			// Update the overall total and move speed displayed on the page
 		});
 	});
+
+	function getOtherItemInGroup(itemId) {
+		// Function to get the ID of the other item in the same "or" group
+		switch (itemId) {
+			case "light-tent-value":
+				return "mountain-tent-value";
+			case "mountain-tent-value":
+				return "light-tent-value";
+			case "summer-sleepingbag-value":
+				return "winter-sleepingbag-value";
+			case "winter-sleepingbag-value":
+				return "summer-sleepingbag-value";
+			default:
+				return null;
+			// Return null if the item doesn't have an "or" group
+		}
+	}
+
+	function deselectOtherItemInGroup(itemId) {
+		// Function to deselect the other item in the same "or" group
+		const otherItem = selectionItems.find((item) => item.id === itemId);
+		// Find the other item based on its ID
+		if (otherItem) {
+			// If the other item is found
+			otherItem.added = false;
+			// Set the added property of the other item to false
+			const otherItemElement = document.getElementById(itemId);
+			// Get the HTML element of the other item
+			if (otherItemElement) {
+				otherItemElement.style.backgroundColor = "";
+				// Remove the background color to indicate deselection
+			}
+		}
+	}
+
+	function deselectOtherItemInGroup(itemId) {
+		const otherItem = selectionItems.find((item) => item.id === itemId);
+		if (otherItem) {
+			otherItem.added = false;
+			const otherItemElement = document.getElementById(itemId);
+			if (otherItemElement) {
+				otherItemElement.style.backgroundColor = "";
+			}
+		}
+	}
+
 	// Event listeners for the Extras section
 	extrasItems.forEach((item) => {
 		const element = document.getElementById(item.id);
@@ -82,6 +129,7 @@ function createFormula() {
 			}
 		});
 	});
+
 	// Function to update the Selection section total
 	function updateSelectionTotal() {
 		const selectionTotalElement =
@@ -92,6 +140,7 @@ function createFormula() {
 		);
 		selectionTotalElement.textContent = selectedItemsTotal.toString();
 	}
+
 	// Function to update the Extras section total
 	function updateExtrasTotal() {
 		const extrasTotalElement =
@@ -102,6 +151,7 @@ function createFormula() {
 		);
 		extrasTotalElement.textContent = extrasItemsTotal.toString();
 	}
+
 	// Function to update the overall total & calculate the move speed
 	function updateOverallTotal() {
 		const selectionsTotal = selectionItems.reduce(
@@ -121,15 +171,6 @@ function createFormula() {
 
 		const overallTotalElement = document.getElementById("overall-total");
 		overallTotalElement.textContent = overallTotal;
-	}
-
-	function getOtherItemId(itemId) {
-		if (itemId === "light-tent-value") return "mountain-tent-value";
-		if (itemId === "mountain-tent-value") return "light-tent-value";
-		if (itemId === "summer-sleepingbag-value")
-			return "winter-sleepingbag-value";
-		if (itemId === "winter-sleepingbag-value")
-			return "summer-sleepingbag-value";
 	}
 }
 
