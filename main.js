@@ -26,32 +26,18 @@ function createFormula() {
 		// Get the HTML element corresponding to the current item's ID
 		element.addEventListener("click", () => {
 			// Add a click event listener to the element
-
-			console.log(`Clicked on ${item.id}`);
-			// Log the ID of the clicked item to the console
-
 			const otherItemId = getOtherItemInGroup(item.id);
 			// Get the ID of the other item in the same "or" group
-
 			if (!item.added) {
 				// If the current item is not already added
-
-				console.log(`Adding ${item.id}`);
-				// Log that the current item is being added
-
 				item.added = true;
 				// Set the added property of the current item to true
 				element.style.backgroundColor = "#e6e0e0";
 				// Change the background color of the element to indicate selection
-
 				deselectOtherItemInGroup(otherItemId);
 				// Deselect the other item in the same group
 			} else {
 				// If the current item is already added
-
-				console.log(`Removing ${item.id}`);
-				// Log that the current item is being removed
-
 				item.added = false;
 				// Set the added property of the current item to false
 				element.style.backgroundColor = "";
