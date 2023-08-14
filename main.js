@@ -3,9 +3,10 @@
 // It should add up each 'section total' and then an overall weight total
 // Then it should have this formula 12 - overall weight total
 
+createFormula();
+
 function createFormula() {
 	const basicsTotal = 5;
-
 	// Created an array of items with their properties
 	const selectionItems = [
 		{ id: "light-tent-value", value: 1, added: false },
@@ -30,11 +31,7 @@ function createFormula() {
 				updateSelectionTotal();
 				updateOverallTotal();
 
-				// Toggle the added status and update styles for the other item
-				const otherItemId =
-					item.id === "light-tent-value"
-						? "mountain-tent-value"
-						: "light-tent-value";
+				const otherItemId = getOtherItemId(item.id);
 				const otherItemElement = document.getElementById(otherItemId);
 				if (otherItemElement) {
 					selectionItems.find(
@@ -42,51 +39,32 @@ function createFormula() {
 					).added = false;
 					otherItemElement.style.backgroundColor = "#cdb7db";
 				}
-				const otherItemId2 =
-					item.id === "summer-sleepingbag-value"
-						? "winter-sleepingbag-value"
-						: "summer-sleepingbag-value";
-				const otherItemElement2 = document.getElementById(otherItemId2);
-				if (otherItemElement2) {
-					selectionItems.find(
-						(otherItem) => otherItem.id === otherItemId2
-					).added = false;
-					otherItemElement2.style.backgroundColor = "#cdb7db";
-				}
+
+				// Check for tent-sleepingbag combination
 				if (
 					item.id === "light-tent-value" ||
-					item.id === "summer-sleepingbag-value"
+					item.id === "mountain-tent-value"
 				) {
-					updateSelectionTotal();
-					updateOverallTotal();
-				} else if (
-					item.id === "mountain-tent-value" ||
-					item.id === "winter-sleepingbag-value"
-				) {
-					updateSelectionTotal();
-					updateOverallTotal();
+					const sleepingBagId =
+						item.id === "light-tent-value"
+							? "winter-sleepingbag-value"
+							: "summer-sleepingbag-value";
+					const sleepingBagElement = document.getElementById(sleepingBagId);
+					if (sleepingBagElement) {
+						sleepingBagElement.style.backgroundColor = "";
+						selectionItems.find(
+							(sleepingBagItem) => sleepingBagItem.id === sleepingBagId
+						).added = false;
+					}
 				}
 			} else {
 				item.added = false;
 				element.style.backgroundColor = "";
-				element.style.textDecoration = "";
-				if (
-					item.id === "light-tent-value" ||
-					item.id === "summer-sleepingbag-value"
-				) {
-					updateSelectionTotal();
-					updateOverallTotal();
-				} else if (
-					item.id === "mountain-tent-value" ||
-					item.id === "winter-sleepingbag-value"
-				) {
-					updateSelectionTotal();
-					updateOverallTotal();
-				}
+				updateSelectionTotal();
+				updateOverallTotal();
 			}
 		});
 	});
-
 	// Event listeners for the Extras section
 	extrasItems.forEach((item) => {
 		const element = document.getElementById(item.id);
@@ -104,7 +82,6 @@ function createFormula() {
 			}
 		});
 	});
-
 	// Function to update the Selection section total
 	function updateSelectionTotal() {
 		const selectionTotalElement =
@@ -115,7 +92,6 @@ function createFormula() {
 		);
 		selectionTotalElement.textContent = selectedItemsTotal.toString();
 	}
-
 	// Function to update the Extras section total
 	function updateExtrasTotal() {
 		const extrasTotalElement =
@@ -126,7 +102,6 @@ function createFormula() {
 		);
 		extrasTotalElement.textContent = extrasItemsTotal.toString();
 	}
-
 	// Function to update the overall total & calculate the move speed
 	function updateOverallTotal() {
 		const selectionsTotal = selectionItems.reduce(
@@ -146,6 +121,15 @@ function createFormula() {
 
 		const overallTotalElement = document.getElementById("overall-total");
 		overallTotalElement.textContent = overallTotal;
+	}
+
+	function getOtherItemId(itemId) {
+		if (itemId === "light-tent-value") return "mountain-tent-value";
+		if (itemId === "mountain-tent-value") return "light-tent-value";
+		if (itemId === "summer-sleepingbag-value")
+			return "winter-sleepingbag-value";
+		if (itemId === "winter-sleepingbag-value")
+			return "summer-sleepingbag-value";
 	}
 }
 
